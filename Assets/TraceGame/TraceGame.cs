@@ -19,7 +19,6 @@ public class TraceGame : MonoBehaviour
     void Start()
     {
         startButton = GameObject.Find("StartButton").GetComponent<Button>();
-        CreateAnswerButtons();
     }
 
     public void StartTraceGame()
@@ -73,6 +72,7 @@ public class TraceGame : MonoBehaviour
             idText.text = unit.Id.ToString();
             idText.enabled = true;
         }
+        CreateAnswerButtons();
         startButton.interactable = true;
     }
 
@@ -82,6 +82,7 @@ public class TraceGame : MonoBehaviour
         for (int i = 0; i < InstanceCount; ++i)
         {
             GameObject newAnswer = Instantiate(AnswerPrefab, canvas.transform);
+            newAnswer.transform.localPosition = new Vector3(-100 + i * 50f, -50f, 0);
             newAnswer.name = $"Answer {i}";
             var answerText = newAnswer.GetComponentInChildren<TextMeshProUGUI>();
             answerText.text = i.ToString();
