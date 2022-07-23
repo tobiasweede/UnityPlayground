@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4206073945982549198}
   - component: {fileID: 2383916867332464340}
   m_Layer: 5
-  m_Name: Answer
+  m_Name: AnswerButton
   m_TagString: Answer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,19 +121,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4206073945982549198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TraceGame, Assembly-CSharp
-        m_MethodName: StartTraceGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7977390584415323564
 GameObject:
   m_ObjectHideFlags: 0
