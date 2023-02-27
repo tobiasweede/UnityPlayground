@@ -6,11 +6,10 @@ public class ProductSpawner : MonoBehaviour
     private GameObject instance;
     private string path;
     private Shader shader;
-    void Start()
+    void Awake()
     {
         shader = Shader.Find("Universal Render Pipeline/Product");
         path = Application.dataPath + "/Resources/waschmittel/ariel2k";
-        print(path);
         var product = "ariel2k";
 
         // Prototype
@@ -28,7 +27,15 @@ public class ProductSpawner : MonoBehaviour
         rend.material.shader = shader;
 
         // Texture
-        Texture2D tex = AssetDatabase.LoadAssetAtPath<Texture2D>($"Assets/Resources/waschmittel/{product}/{product}_FeatureMap.png");
+        // Make texture readable
+        // https://stackoverflow.com/questions/25175864/making-a-texture2d-readable-in-unity-via-code
+        string texturePath = $"Assets/Resources/waschmittel/{product}/{product}_FeatureMap.png";
+        TextureImporter textureImporter = AssetImporter.GetAtPath(texturePath) as TextureImporter;
+        textureImporter.isReadable = true;
+        AssetDatabase.ImportAsset(texturePath);
+        AssetDatabase.Refresh();
+        // Import texture
+        Texture2D tex = AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath);
         rend.material.SetTexture("_FeatureMap", tex);
     }
 }

@@ -1,16 +1,25 @@
+using System.Collections.Generic;
 using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
+using TMPro;
 
 public class RaycastTest : MonoBehaviour
 {
-    public event Action<Color> OnFeatureMapColor;
+    TMP_Text tmpText;
+    Transform cameraTransform;
+    void Start()
+    {
+        tmpText = GameObject.Find("FeatureDisplay").GetComponent<TMP_Text>();
+        cameraTransform = GameObject.Find("PlayerCameraRoot").transform;
+
+    }
     void Update()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, 20f))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.TransformDirection(Vector3.forward), out RaycastHit hit, 20f))
         {
             // Debug.Log($"Hit {hit.collider.transform.name}");
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+            Debug.DrawRay(cameraTransform.position, cameraTransform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
 
             Vector2 pixelUV = hit.textureCoord;
 
@@ -32,10 +41,15 @@ public class RaycastTest : MonoBehaviour
             pixelUV.x *= duplicate.width;
             pixelUV.y *= duplicate.height;
             Color color = duplicate.GetPixel((int)pixelUV.x, (int)pixelUV.y);
-
-            // Emit
-            OnFeatureMapColor?.Invoke(color);
-
+            if (color == Color.black)
+                tmpText.text = color.ToString();
+            if (color == Color.red)
+                tmpText.text = color.ToString();
+            if (color == Color.green)
+                tmpText.text = color.ToString();
+            if (color == Color.blue)
+                tmpText.text = color.ToString();
+            // print("receiver: " + color.ToString());
         }
         else
         {
