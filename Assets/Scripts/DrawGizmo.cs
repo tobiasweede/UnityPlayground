@@ -21,5 +21,7 @@ public class DrawGizmo : MonoBehaviour
         OffsetToTarget = (target - offset);
         Gizmos.color = Color.green;
         Gizmos.DrawRay(offset, OffsetToTarget.normalized);
+        Gizmos.DrawRay(transform.position, Vector3.forward);
+        // print(Vector3.forward.magnitude);
     }
 }
