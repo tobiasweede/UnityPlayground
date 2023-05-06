@@ -19,9 +19,12 @@ public class FeatureMapDisplay : MonoBehaviour
         Color? color = null;
         foreach (Color colorB in testColors)
             if (checkColorApproxEqual(colorA, colorB)) color = colorA;
-        if (color == Color.red) print("Details");
-        else if (color == Color.green) print("Advertisement");
-        else if (color == Color.blue) print("Logo");
+        var msg = "";
+        if (color == Color.red) msg = "Details";
+        else if (color == Color.green) msg = "Advertisement";
+        else if (color == Color.blue) msg = "Logo";
+        print(msg);
+        tmpText.text = msg;
     }
 
     private bool checkColorApproxEqual(Color colorA, Color colorB)
